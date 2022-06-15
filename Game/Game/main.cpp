@@ -20,22 +20,21 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 	// グラフィックの描画先を裏画面にセット
 	SetDrawScreen(DX_SCREEN_BACK);
 
-	/// <summary>
-	/// 変数の初期化.
-	/// </summary>
+	/*
+	* 変数の初期化.
+	*/
 	Map* map = new Map();          // 背景の生成.
+
+	/*
+	* 読み込み関数.
+	*/
+	map->Load();
 
 	/// <summary>
 	/// ゲームループ
 	/// </summary>
 	while (true)
 	{
-		/// <summary>
-		/// 更新処理.
-		/// </summary>
-
-		map->Update();                           // 背景の更新.
-
 		/// <summary>
 		/// 描画処理.
 		/// </summary>
@@ -45,6 +44,12 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 		map->Draw();                             // 背景の描画.
 
 		ScreenFlip();
+
+		/// <summary>
+		/// 更新処理.
+		/// </summary>
+
+		map->Update();                           // 背景の更新.
 
 		// もしエスケープキーを押されたとき.
 		if (CheckHitKey(KEY_INPUT_ESCAPE))
