@@ -1,7 +1,6 @@
 #pragma once
-#include"pch.h"
 
-class Background;
+#include"pch.h"
 
 /// <summary>
 /// マップクラス.
@@ -30,10 +29,24 @@ public:
 	/// </summary>
 	void Draw();
 
+	// 画像ファイルの順番.
+	enum FileName
+	{
+		skyImgFileNum = 0,
+		cloudsImgFileNum,
+
+		MaxImgFileNum,
+	};
+
 private:
 	Background* mSkyBg[SkyImgNum];       // 空背景クラスの保存配列変数.
-	Background* mCloudBg[CloudImgNum];   // 雲背景クラスの保存配列変数.
-	
-	char* mSkyHandle;                    // 空の画像ハンドル.
-	char* mCloudHandle;                  // 雲の画像ハンドル.
+	Background* mCloudBg[CloudsImgNum];   // 雲背景クラスの保存配列変数.
+
+	// 画像ハンドルの入った配列.
+	// 上記のFileNameと連動するようにする.
+	const char* mPicName[MaxImgFileNum] =
+	{
+		"img/sky.png",
+		"img/clouds.png"
+	};
 };

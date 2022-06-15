@@ -23,7 +23,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 	/// <summary>
 	/// •Ï”‚Ì‰Šú‰».
 	/// </summary>
-	Background* bg = new Background();          // ”wŒi‚Ì¶¬.
+	Map* map = new Map();          // ”wŒi‚Ì¶¬.
 
 	/// <summary>
 	/// ƒQ[ƒ€ƒ‹[ƒv
@@ -34,7 +34,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 		/// XVˆ—.
 		/// </summary>
 
-		bg->Update();                           // ”wŒi‚ÌXV.
+		map->Update();                           // ”wŒi‚ÌXV.
 
 		/// <summary>
 		/// •`‰æˆ—.
@@ -42,7 +42,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 
 		ClearDrawScreen();
 
-		bg->Draw();                             // ”wŒi‚Ì•`‰æ.
+		map->Draw();                             // ”wŒi‚Ì•`‰æ.
 
 		ScreenFlip();
 
@@ -54,7 +54,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 		}
 	}
 
-	delete bg;                                  // ”wŒi‚Ìíœ.
+	delete map;                                  // ”wŒi‚Ìíœ.
 
 	/// <summary>
 	/// Dxlib‚Ìg—pI—¹ˆ—.
