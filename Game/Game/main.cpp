@@ -35,9 +35,9 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 	/// </summary>
 	while (true)
 	{
-		/// <summary>
-		/// 描画処理.
-		/// </summary>
+		/*
+		* 描画関数.
+		*/
 
 		ClearDrawScreen();
 
@@ -45,9 +45,9 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 
 		ScreenFlip();
 
-		/// <summary>
-		/// 更新処理.
-		/// </summary>
+		/*
+		* 更新関数.
+		*/
 
 		map->Update();                           // 背景の更新.
 

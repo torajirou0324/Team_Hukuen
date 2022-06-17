@@ -14,6 +14,10 @@ Map::Map()
 	{
 		mCloudBg[i] = new Background();                 // ‰_‚Ì¶¬.
 	}
+	for (int i = 0; i < GrassImgNum; i++)
+	{
+		mGrassBg[i] = new Background();                 // ‘Œ´‚Ì¶¬.
+	}
 }
 
 /// <summary>
@@ -29,19 +33,28 @@ Map::~Map()
 	{
 		mCloudBg[i]->~Background();                    // ‰_‚Ìíœ.
 	}
+	for (int i = 0; i < GrassImgNum; i++)
+	{
+		mGrassBg[i]->~Background();
+	}
 }
 
 void Map::Load()
 {
 	for (int i = 0; i < SkyImgNum; i++)
 	{
-		mSkyBg[i]->Load(mMapPicName[skyImgFileNum]);
+		mSkyBg[i]->Load(mMapPicName[SkyImgFileNum]);
 		mSkyBg[i]->SetPosition(i * SkyImgWidth, 0);                // À•W‚Ìİ’è.
 	}
 	for (int i = 0; i < CloudsImgNum; i++)
 	{
-		mCloudBg[i]->Load(mMapPicName[cloudsImgFileNum]);
+		mCloudBg[i]->Load(mMapPicName[CloudsImgFileNum]);
 		mCloudBg[i]->SetPosition(i * CloudsImgWidth, mSkyBg[0]->GetImgHeight() / 3); // À•W‚Ìİ’è.
+	}
+	for (int i = 0; i < GrassImgNum; i++)
+	{
+		mGrassBg[i]->Load(mMapPicName[GrassImgFileNum]);
+		mGrassBg[i]->SetPosition(i * GrassImgWidth, mCloudBg[0]->GetImgHeight() / 2);
 	}
 }
 
@@ -58,6 +71,10 @@ void Map::Update()
 	{
 		mCloudBg[i]->Update(CloudsSpeed);
 	}
+	for (int i = 0; i < GrassImgNum; i++)
+	{
+		mGrassBg[i]->Update(GrassSpeed);
+	}
 }
 
 /// <summary>
@@ -72,5 +89,9 @@ void Map::Draw()
 	for (int i = 0; i < CloudsImgNum; i++)
 	{
 		mCloudBg[i]->Draw();
+	}
+	for (int i = 0; i < GrassImgNum; i++)
+	{
+		mGrassBg[i]->Draw();
 	}
 }

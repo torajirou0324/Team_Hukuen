@@ -4,9 +4,9 @@
 // 画像ファイルの順番.
 static enum BackgroundFileNum
 {
-	skyImgFileNum = 0,
-	cloudsImgFileNum,
-	grassImgFileNum,
+	SkyImgFileNum = 0,
+	CloudsImgFileNum,
+	GrassImgFileNum,
 
 	MaxImgFileNum,
 };
@@ -19,6 +19,13 @@ static const char* mMapPicName[MaxImgFileNum] =
 	"img/clouds.png",
 	"img/grass.png"
 };
+
+//static int map[][]=
+//{
+//	1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
+//	1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
+//	1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+//}
 
 /// <summary>
 /// マップクラス.
@@ -55,4 +62,5 @@ public:
 private:
 	Background* mSkyBg[SkyImgNum];        // 空背景クラスの保存配列変数.
 	Background* mCloudBg[CloudsImgNum];   // 雲背景クラスの保存配列変数.
+	Background* mGrassBg[GrassImgNum];    // 草原背景クラスの保存配列変数.
 };
