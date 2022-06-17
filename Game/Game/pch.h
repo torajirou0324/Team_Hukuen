@@ -21,7 +21,18 @@ const float CloudsSpeed = 1.5f;                   // 雲の移動スピード.
 const int CloudsImgNum = 2;                       // 雲の画像の数.
 const int CloudsImgWidth = 544;                   // 雲の画像の横幅(ピクセル単位).
 
+
+//文字サイズ
+const int mFontSize = 40;
+
 // 作成ヘッダファイル
 #include "BackGround.h"
 #include "Map.h"
 #include "Player.h"
+
+#include "SceneBase.h"
+#include "Title.h"
+#include "Play.h"
+#include "Clear.h"
+#include "Over.h"
+#include "SceneManager.h"
