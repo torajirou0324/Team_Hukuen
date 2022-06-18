@@ -8,13 +8,15 @@ Map::Map()
 	// for文で変数全てを初期化する.
 	for (int i = 0; i < SkyImgNum; i++)
 	{
-		mSkyBg[i] = new Background(mPicName[skyImgFileNum]);       // 空の生成.
-		mSkyBg[i]->SetPosition(i * SkyImgWidth, 0);     // 座標の設定.
+		mSkyBg[i] = new Background();                   // 空の生成.
 	}
 	for (int i = 0; i < CloudsImgNum; i++)
 	{
-		mCloudBg[i] = new Background(mPicName[skyImgFileNum]);   // 雲の生成.
-		mCloudBg[i]->SetPosition(i * CloudsImgWidth, 0); // 座標の設定.
+		mCloudBg[i] = new Background();                 // 雲の生成.
+	}
+	for (int i = 0; i < GrassImgNum; i++)
+	{
+		mGrassBg[i] = new Background();                 // 草原の生成.
 	}
 }
 
@@ -31,6 +33,29 @@ Map::~Map()
 	{
 		mCloudBg[i]->~Background();                    // 雲の削除.
 	}
+	for (int i = 0; i < GrassImgNum; i++)
+	{
+		mGrassBg[i]->~Background();
+	}
+}
+
+void Map::Load()
+{
+	for (int i = 0; i < SkyImgNum; i++)
+	{
+		mSkyBg[i]->Load(mMapPicName[SkyImgFileNum]);
+		mSkyBg[i]->SetPosition(i * SkyImgWidth, 0);                // 座標の設定.
+	}
+	for (int i = 0; i < CloudsImgNum; i++)
+	{
+		mCloudBg[i]->Load(mMapPicName[CloudsImgFileNum]);
+		mCloudBg[i]->SetPosition(i * CloudsImgWidth, mSkyBg[0]->GetImgHeight() / 3); // 座標の設定.
+	}
+	for (int i = 0; i < GrassImgNum; i++)
+	{
+		mGrassBg[i]->Load(mMapPicName[GrassImgFileNum]);
+		mGrassBg[i]->SetPosition(i * GrassImgWidth, mCloudBg[0]->GetImgHeight() / 2);
+	}
 }
 
 /// <summary>
@@ -46,6 +71,10 @@ void Map::Update()
 	{
 		mCloudBg[i]->Update(CloudsSpeed);
 	}
+	for (int i = 0; i < GrassImgNum; i++)
+	{
+		mGrassBg[i]->Update(GrassSpeed);
+	}
 }
 
 /// <summary>
@@ -60,5 +89,9 @@ void Map::Draw()
 	for (int i = 0; i < CloudsImgNum; i++)
 	{
 		mCloudBg[i]->Draw();
+	}
+	for (int i = 0; i < GrassImgNum; i++)
+	{
+		mGrassBg[i]->Draw();
 	}
 }

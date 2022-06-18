@@ -1,6 +1,31 @@
 #pragma once
-
 #include"pch.h"
+
+// 画像ファイルの順番.
+static enum BackgroundFileNum
+{
+	SkyImgFileNum = 0,
+	CloudsImgFileNum,
+	GrassImgFileNum,
+
+	MaxImgFileNum,
+};
+
+// 画像ハンドルの入った配列.
+// 上記のFileNameと連動するようにする.
+static const char* mMapPicName[MaxImgFileNum] =
+{
+	"img/sky.png",
+	"img/clouds.png",
+	"img/grass.png"
+};
+
+//static int map[][]=
+//{
+//	1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
+//	1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
+//	1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+//}
 
 /// <summary>
 /// マップクラス.
@@ -20,6 +45,11 @@ public:
 	~Map();
 
 	/// <summary>
+	/// 読み込み関数.
+	/// </summary>
+	void Load();
+
+	/// <summary>
 	/// 更新関数.
 	/// </summary>
 	void Update();
@@ -29,24 +59,8 @@ public:
 	/// </summary>
 	void Draw();
 
-	// 画像ファイルの順番.
-	enum FileName
-	{
-		skyImgFileNum = 0,
-		cloudsImgFileNum,
-
-		MaxImgFileNum,
-	};
-
 private:
-	Background* mSkyBg[SkyImgNum];       // 空背景クラスの保存配列変数.
+	Background* mSkyBg[SkyImgNum];        // 空背景クラスの保存配列変数.
 	Background* mCloudBg[CloudsImgNum];   // 雲背景クラスの保存配列変数.
-
-	// 画像ハンドルの入った配列.
-	// 上記のFileNameと連動するようにする.
-	const char* mPicName[MaxImgFileNum] =
-	{
-		"img/sky.png",
-		"img/clouds.png"
-	};
+	Background* mGrassBg[GrassImgNum];    // 草原背景クラスの保存配列変数.
 };
