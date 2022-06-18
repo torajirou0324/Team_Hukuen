@@ -19,22 +19,33 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 
 	// グラフィックの描画先を裏画面にセット
 	SetDrawScreen(DX_SCREEN_BACK);
-
-	/// <summary>
-	/// 変数の初期化.
-	/// </summary>
-	Map* map = new Map();          // 背景の生成.
+	
+	// フォント変更
+	//ChangeFont("nicomoji-plus_1.11");
+	// フォントサイズ変更
+	SetFontSize(mFontSize);
+	
+	// 現在のシーンを格納する変数　にタイトルシーンを代入
+	SceneBase* nowScene = new Title();
+	// 一時的にシーンを保存する変数
+	SceneBase* tmpScene;
 
 	/// <summary>
 	/// ゲームループ
 	/// </summary>
-	while (true)
+	while (ProcessMessage() == 0 && CheckHitKey(KEY_INPUT_ESCAPE) == 0)
 	{
-		/// <summary>
-		/// 更新処理.
-		/// </summary>
+		// シーンの更新
+		tmpScene = nowScene->Update();
 
-		map->Update();                           // 背景の更新.
+		// 現在のシーンと保持しているシーンが異なっていたら
+		if (nowScene != tmpScene)
+		{
+			// 現在のシーンを解放
+			delete nowScene;
+			// 保持しているシーンを現在のシーンに代入
+			nowScene = tmpScene;
+		}
 
 		/// <summary>
 		/// 描画処理.
@@ -42,19 +53,15 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 
 		ClearDrawScreen();
 
-		map->Draw();                             // 背景の描画.
+		// 現在のシーンを描画
+		nowScene->Draw();
 
+		// 裏画面の内容を表画面に反映
 		ScreenFlip();
-
-		// もしエスケープキーを押されたとき.
-		if (CheckHitKey(KEY_INPUT_ESCAPE))
-		{
-			// ループから抜ける.
-			break;
-		}
 	}
 
-	delete map;                                  // 背景の削除.
+	// シーンの削除
+	delete nowScene;
 
 	/// <summary>
 	/// Dxlibの使用終了処理.
