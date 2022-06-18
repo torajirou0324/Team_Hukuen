@@ -1,18 +1,8 @@
 #pragma once
 #include "SceneBase.h"
 
-// 前方宣言
-class BaseScene;
-
-
 class SceneManager
 {
-private:
-	// 現在のシーン
-	BaseScene* mIsScene;
-
-	//int mIsScene;
-
 public:
 	// コンストラクタ
 	SceneManager();

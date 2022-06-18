@@ -5,7 +5,7 @@
 /// </summary>
 Clear::Clear()
 	: SceneBase()
-	, mReturnStringPosX(160)
+	, mReturnStringPosX(190)
 	, mReturnStringPosY(150)
 {
 	// 背景画像を読み込む
@@ -27,22 +27,26 @@ SceneBase* Clear::Update()
 {
 	// マウスの位置を取得
 	GetMousePoint(&mMousePosX, &mMousePosY);
-	// はいボタンが右ボタンで押されたら
-	if (mYesButtonImagePosX <= mMousePosX && mYesButtonImagePosX + mButtonImageW >= mMousePosX &&
-		mButtonImagePosY <= mMousePosY && mMousePosY + mButtonImageH >= mMousePosY &&
-		(GetMouseInput() & MOUSE_INPUT_RIGHT) != 0)
+
+	// もし右ボタンが押されたら
+	if ((GetMouseInput() & MOUSE_INPUT_RIGHT) != 0)
 	{
-		// タイトルシーンへ遷移
-		return new Title();
+		// はいボタンが押されたら
+		if (mYesButtonImagePosX <= mMousePosX && mYesButtonImagePosX + mButtonImageW >= mMousePosX &&
+			mButtonImagePosY <= mMousePosY && mButtonImagePosY + mButtonImageH >= mMousePosY)
+		{
+			// タイトルシーンへ遷移
+			return new Title();
+		}
+		// いいえボタンが押されたら
+		if (mNoButtonImagePosX <= mMousePosX && mNoButtonImagePosX + mButtonImageW >= mMousePosX &&
+			mButtonImagePosY <= mMousePosY && mButtonImagePosY + mButtonImageH >= mMousePosY)
+		{
+			// DXライブラリを終了する
+			DxLib_End();
+		}
 	}
-	// いいえボタンが右ボタンで押されたら
-	if (mNoButtonImagePosX <= mMousePosX && mNoButtonImagePosX + mButtonImageW >= mMousePosX &&
-		mButtonImagePosY <= mMousePosY && mMousePosY + mButtonImageH >= mMousePosY &&
-		(GetMouseInput() & MOUSE_INPUT_RIGHT) != 0)
-	{
-		// DXライブラリを終了する
-		DxLib_End();
-	}
+
 	// それ以外の場合はこのシーンを返す
 	return this;
 }
