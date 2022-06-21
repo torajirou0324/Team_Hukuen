@@ -28,7 +28,7 @@ SceneBase* Title::Update()
 	// 左ボタンが押されたらプレイ画面に遷移
 	if ((GetMouseInput() & MOUSE_INPUT_LEFT) != 0)
 	{
-		return new Play();
+		return new SelectStage();
 	}
 	// それ以外の場合はこのシーンを返す
 	return this;
@@ -44,4 +44,5 @@ void Title::Draw()
 	DrawGraph(mBackImagePosX, mBackImagePosY, mBackImage, true);
 	// 黒色で「左クリックでスタート」と描画
 	DrawString(mStartStringPosX, mStartStringPosY, "左クリックでSTART",GetColor(0,0,0));
+
 }

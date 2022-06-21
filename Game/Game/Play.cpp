@@ -31,6 +31,12 @@ SceneBase* Play::Update()
 	{
 		return new Clear();
 	}
+	// 右ボタンが押されたらゲームオーバー画面に遷移
+	if ((GetMouseInput() & MOUSE_INPUT_LEFT) != 0)
+	{
+		// return new Over();
+	}
+
 	// それ以外の場合はこのシーンを返す
 	return this;
 }

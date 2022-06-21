@@ -20,10 +20,15 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 	// グラフィックの描画先を裏画面にセット
 	SetDrawScreen(DX_SCREEN_BACK);
 	
+
+	// マウスカーソルを表示状態にする
+	SetMouseDispFlag(true);
 	// フォント変更
-	//ChangeFont("nicomoji-plus_1.11");
+	ChangeFont("ニコモジ＋");
 	// フォントサイズ変更
 	SetFontSize(mFontSize);
+
+
 	
 	// 現在のシーンを格納する変数　にタイトルシーンを代入
 	SceneBase* nowScene = new Title();

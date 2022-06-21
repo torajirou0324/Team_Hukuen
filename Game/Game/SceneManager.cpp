@@ -4,7 +4,6 @@
 /// コンストラクタ
 /// </summary>
 SceneManager::SceneManager()
-	: mIsScene(NULL)
 {
 
 }
@@ -31,6 +30,8 @@ void SceneManager::ChangeScene(Scene _isScene)
 			break;
 		case gameClear:
 			break;
+		case gameOver:
+			break;
 		case gameEnd:
 			break;
 	}
@@ -55,5 +56,5 @@ void SceneManager::Update()
 /// </summary>
 void SceneManager::Draw()
 {
-
+	
 }
