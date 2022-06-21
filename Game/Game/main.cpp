@@ -10,7 +10,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 	// ウィンドウモード処理.
 	// trueの時はウィンドウモード、falseの時はフルスクリーン
 	ChangeWindowMode(true);
-
+	
 	// 画面モードの設定
 	SetGraphMode(WINDOW_WIDTH, WINDOW_HEIGHT, 16, 60);
 
@@ -23,7 +23,11 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 	/*
 	* 変数の初期化.
 	*/
+	Player* player = new Player();
 	Map* map = new Map();          // 背景の生成.
+
+	player->Load("Game/Img/player.png");
+	player->SetPosition(100, 100);
 
 	/*
 	* 読み込み関数.
@@ -35,6 +39,9 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 	/// </summary>
 	while (true)
 	{
+		player->Update(50);
+
+
 		/// <summary>
 		/// 描画処理.
 		/// </summary>
@@ -42,6 +49,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 		ClearDrawScreen();
 
 		map->Draw();                             // 背景の描画.
+
+		player->Draw();
 
 		ScreenFlip();
 
