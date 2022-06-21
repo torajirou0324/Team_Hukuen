@@ -7,7 +7,7 @@ static enum BackgroundFileNum
 	SkyImgFileNum = 0,
 	CloudsImgFileNum,
 	GrassImgFileNum,
-
+	TileImgFileNum,
 	MaxImgFileNum,
 };
 
@@ -18,14 +18,8 @@ static const char* mMapPicName[MaxImgFileNum] =
 	"img/sky.png",
 	"img/clouds.png",
 	"img/grass.png"
+	"img/tile.png"
 };
-
-//static int map[][]=
-//{
-//	1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
-//	1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
-//	1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
-//}
 
 /// <summary>
 /// マップクラス.
@@ -45,22 +39,26 @@ public:
 	~Map();
 
 	/// <summary>
-	/// 読み込み関数.
-	/// </summary>
-	void Load();
-
-	/// <summary>
-	/// 更新関数.
-	/// </summary>
-	void Update();
-
-	/// <summary>
 	/// 描画関数.
 	/// </summary>
 	void Draw();
 
+	/// <summary>
+	/// 呼ぶとマップタイルX座標を1ずつ増やす
+	/// </summary>
+	void MapAdd();
+
+	/// <summary>
+	/// 呼ぶとマップタイルX座標を1ずつ減らす
+	/// </summary>
+	void MapSub();
+
 private:
-	Background* mSkyBg[SkyImgNum];        // 空背景クラスの保存配列変数.
-	Background* mCloudBg[CloudsImgNum];   // 雲背景クラスの保存配列変数.
-	Background* mGrassBg[GrassImgNum];    // 草原背景クラスの保存配列変数.
+	int m_cloudImg;			// 雲の画像ハンドル
+	int m_grassImg;			// 草原の画像ハンドル
+	int m_skyImg;			// 空の画像ハンドル
+	int m_tileImg;			// タイルの画像ハンドル
+	int m_tileData[3][4];	// タイルの描画に使う二次元配列
+	int m_tileOriginPosX;	// 先頭タイル二次元配列描画のX座標
+	int m_tileSecondPosX;	// ２番目のタイル二次元配列描画のX座標
 };

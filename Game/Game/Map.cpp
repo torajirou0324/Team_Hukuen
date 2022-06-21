@@ -4,19 +4,19 @@
 /// コンストラクタ、変数を初期化・設定.
 /// </summary>
 Map::Map()
+	: m_cloudImg(LoadGraph(mMapPicName[CloudsImgFileNum]))
+	, m_grassImg(LoadGraph("Img/grass.png"))
+	, m_skyImg(LoadGraph(mMapPicName[SkyImgFileNum]))
+	, m_tileImg(LoadGraph("Img/tile.png"))
+	, m_tileOriginPosX(40)
+	, m_tileSecondPosX(530)
 {
-	// for文で変数全てを初期化する.
-	for (int i = 0; i < SkyImgNum; i++)
+	for (auto j = 0; j < 3; j++)
 	{
-		mSkyBg[i] = new Background();                   // 空の生成.
-	}
-	for (int i = 0; i < CloudsImgNum; i++)
-	{
-		mCloudBg[i] = new Background();                 // 雲の生成.
-	}
-	for (int i = 0; i < GrassImgNum; i++)
-	{
-		mGrassBg[i] = new Background();                 // 草原の生成.
+		for (auto i = 0; i < 4; i++)
+		{
+			m_tileData[j][i] = 0;
+		}
 	}
 }
 
@@ -25,56 +25,7 @@ Map::Map()
 /// </summary>
 Map::~Map()
 {
-	for (int i = 0; i < SkyImgNum; i++)
-	{
-		mSkyBg[i]->~Background();                      // 空の削除.
-	}
-	for (int i = 0; i < CloudsImgNum; i++)
-	{
-		mCloudBg[i]->~Background();                    // 雲の削除.
-	}
-	for (int i = 0; i < GrassImgNum; i++)
-	{
-		mGrassBg[i]->~Background();
-	}
-}
 
-void Map::Load()
-{
-	for (int i = 0; i < SkyImgNum; i++)
-	{
-		mSkyBg[i]->Load(mMapPicName[SkyImgFileNum]);
-		mSkyBg[i]->SetPosition(i * SkyImgWidth, 0);                // 座標の設定.
-	}
-	for (int i = 0; i < CloudsImgNum; i++)
-	{
-		mCloudBg[i]->Load(mMapPicName[CloudsImgFileNum]);
-		mCloudBg[i]->SetPosition(i * CloudsImgWidth, mSkyBg[0]->GetImgHeight() / 3); // 座標の設定.
-	}
-	for (int i = 0; i < GrassImgNum; i++)
-	{
-		mGrassBg[i]->Load(mMapPicName[GrassImgFileNum]);
-		mGrassBg[i]->SetPosition(i * GrassImgWidth, mCloudBg[0]->GetImgHeight() / 2);
-	}
-}
-
-/// <summary>
-/// 更新関数.
-/// </summary>
-void Map::Update()
-{
-	for (int i = 0; i < SkyImgNum; i++)
-	{
-		mSkyBg[i]->Update(SkySpeed);
-	}
-	for (int i = 0; i < CloudsImgNum; i++)
-	{
-		mCloudBg[i]->Update(CloudsSpeed);
-	}
-	for (int i = 0; i < GrassImgNum; i++)
-	{
-		mGrassBg[i]->Update(GrassSpeed);
-	}
 }
 
 /// <summary>
@@ -82,16 +33,30 @@ void Map::Update()
 /// </summary>
 void Map::Draw()
 {
-	for (int i = 0; i < SkyImgNum; i++)
+	for (auto i = 0; i < 4; i++)
 	{
-		mSkyBg[i]->Draw();
+		DrawGraph(i * 160, 0, m_skyImg, TRUE);
 	}
-	for (int i = 0; i < CloudsImgNum; i++)
+	DrawGraph(0, 0, m_cloudImg, TRUE);
+	DrawGraph(0, 0, m_grassImg, TRUE);
+	for (auto j = 0; j < 3; j++)
 	{
-		mCloudBg[i]->Draw();
+		for (auto i = 0; i < 4; i++)
+		{
+			DrawGraph(m_tileOriginPosX + (i * 120) + (j * 50), 200 + j * 70, m_tileImg, TRUE);
+			DrawGraph(m_tileSecondPosX + (i * 120) + (j * 50), 200 + j * 70, m_tileImg, TRUE);
+		}
 	}
-	for (int i = 0; i < GrassImgNum; i++)
-	{
-		mGrassBg[i]->Draw();
-	}
+}
+
+void Map::MapAdd()
+{
+	m_tileOriginPosX++;
+	m_tileSecondPosX++;
+}
+
+void Map::MapSub()
+{
+	m_tileOriginPosX--;
+	m_tileSecondPosX--;
 }
