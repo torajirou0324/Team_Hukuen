@@ -1,4 +1,5 @@
 #include"pch.h"
+#include "SceneManager.h"
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 	LPSTR lpCmdLine, int nCmdShow)
@@ -23,50 +24,14 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 
 	// マウスカーソルを表示状態にする
 	SetMouseDispFlag(true);
-	// フォント変更
-	ChangeFont("ニコモジ＋");
+	//// フォント変更
+	//ChangeFont("ニコモジ＋");
 	// フォントサイズ変更
 	SetFontSize(mFontSize);
 
 
-	
-	// 現在のシーンを格納する変数　にタイトルシーンを代入
-	SceneBase* nowScene = new Title();
-	// 一時的にシーンを保存する変数
-	SceneBase* tmpScene;
-
-	/// <summary>
-	/// ゲームループ
-	/// </summary>
-	while (ProcessMessage() == 0 && CheckHitKey(KEY_INPUT_ESCAPE) == 0)
-	{
-		// シーンの更新
-		tmpScene = nowScene->Update();
-
-		// 現在のシーンと保持しているシーンが異なっていたら
-		if (nowScene != tmpScene)
-		{
-			// 現在のシーンを解放
-			delete nowScene;
-			// 保持しているシーンを現在のシーンに代入
-			nowScene = tmpScene;
-		}
-
-		/// <summary>
-		/// 描画処理.
-		/// </summary>
-
-		ClearDrawScreen();
-
-		// 現在のシーンを描画
-		nowScene->Draw();
-
-		// 裏画面の内容を表画面に反映
-		ScreenFlip();
-	}
-
-	// シーンの削除
-	delete nowScene;
+	SceneManager* mSceneMG = new SceneManager;
+	delete mSceneMG;
 
 	/// <summary>
 	/// Dxlibの使用終了処理.

@@ -10,7 +10,7 @@ public:
 	// 描画
 	void Draw()override;
 	// 更新
-	SceneBase* Update()override;
+	TAG_SCENE Update()override;
 
 private :
 	// ステージ１の画像

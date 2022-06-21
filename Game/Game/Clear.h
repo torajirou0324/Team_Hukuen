@@ -11,7 +11,7 @@ public:
 	// 描画
 	void Draw()override;
 	// 更新
-	SceneBase* Update()override;
+	TAG_SCENE Update()override;
 
 private:
 	// タイトルへ戻る文字座標X

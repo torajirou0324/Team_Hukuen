@@ -23,20 +23,20 @@ Clear::~Clear()
 /// <summary>
 /// 更新
 /// </summary>
-SceneBase* Clear::Update()
+TAG_SCENE Clear::Update()
 {
 	// マウスの位置を取得
 	GetMousePoint(&mMousePosX, &mMousePosY);
 
 	// もし右ボタンが押されたら
-	if ((GetMouseInput() & MOUSE_INPUT_RIGHT) != 0)
+	if (/*Key[MOUSE_INPUT_RIGHT] == 1*/(GetMouseInput() & MOUSE_INPUT_RIGHT) != 0)
 	{
 		// はいボタンが押されたら
 		if (mYesButtonImagePosX <= mMousePosX && mYesButtonImagePosX + mButtonImageW >= mMousePosX &&
 			mButtonImagePosY <= mMousePosY && mButtonImagePosY + mButtonImageH >= mMousePosY)
 		{
 			// タイトルシーンへ遷移
-			return new Title();
+			return TAG_SCENE::TAG_TITLE;
 		}
 		// いいえボタンが押されたら
 		if (mNoButtonImagePosX <= mMousePosX && mNoButtonImagePosX + mButtonImageW >= mMousePosX &&
@@ -48,7 +48,7 @@ SceneBase* Clear::Update()
 	}
 
 	// それ以外の場合はこのシーンを返す
-	return this;
+	return TAG_SCENE::TAG_NONE;
 }
 
 /// <summary>

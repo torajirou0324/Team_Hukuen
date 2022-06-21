@@ -1,6 +1,17 @@
 #pragma once
 #include "DxLib.h"
 
+// シーンのタグ
+enum class TAG_SCENE
+{
+	TAG_TITLE,
+	TAG_SELECT,
+	TAG_PLAY,
+	TAG_CLEAR,
+	TAG_OVER,
+	TAG_NONE
+};
+
 class SceneBase
 {
 public:
@@ -10,7 +21,7 @@ public:
 	virtual ~SceneBase();
 
 	// 更新
-	virtual SceneBase* Update() = 0;
+	virtual TAG_SCENE Update() = 0;
 	// 描画（空）
 	virtual void Draw() = 0;
 
@@ -46,5 +57,6 @@ protected:
 	int mMousePosX;
 	// マウス座標Y
 	int mMousePosY;
+
 
 };
