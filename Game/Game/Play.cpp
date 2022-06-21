@@ -21,10 +21,6 @@ Play::~Play()
 /// </summary>
 TAG_SCENE Play::Update()
 {
-	/// <summary>
-	/// 更新処理.
-	/// </summary>
-	map->Update();                           // 背景の更新.
 
 	// 右ボタンが押されたらクリア画面に遷移
 	if (/*Key[MOUSE_INPUT_RIGHT] == 1*/(GetMouseInput() & MOUSE_INPUT_RIGHT) != 0)
