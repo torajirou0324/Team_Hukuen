@@ -9,29 +9,20 @@ public:
 	// デストラクタ
 	~SceneManager();
 
-	// シーンの種類
-	enum Scene
-	{
-		// タイトル
-		title,
-		// ゲームプレイ
-		play,
-		// ゲームクリア
-		gameClear,
-		// ゲームオーバー
-		gameOver,
-		// ゲーム終了
-		gameEnd
-	};
-
-	// 更新
-	static void Update();
-	// 描画
-	static void Draw();
+	// ゲームループ
+	void GameRoop();
+	// シーン生成
+	void CreateScene(TAG_SCENE _tag);
+	// シーンを削除
+	void ClearScene();
 
 
-	// シーンを変える
-	void ChangeScene(Scene _isScene);
+private:
+	// マウス入力管理フラグ
+	bool mMouseInputFlag;
+
+	// 現在のシーン
+	SceneBase* mNowScene;
 
 };
 

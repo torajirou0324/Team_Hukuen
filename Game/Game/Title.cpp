@@ -23,16 +23,16 @@ Title::~Title()
 /// <summary>
 /// 更新
 /// </summary>
-SceneBase* Title::Update()
+TAG_SCENE Title::Update()
 {
-	// 左ボタンが押されたらプレイ画面に遷移
-	if ((GetMouseInput() & MOUSE_INPUT_LEFT) != 0)
+	// 右ボタンが押されたらプレイ画面に遷移
+	if (/*Key[MOUSE_INPUT_RIGHT] == 1*/(GetMouseInput() & MOUSE_INPUT_RIGHT) != 0)
 	{
-		return new SelectStage();
+		return TAG_SCENE::TAG_SELECT;
 	}
+
 	// それ以外の場合はこのシーンを返す
-	return this;
-	// 押された場所によってスタートだったりゲーム終了だったりする
+	return TAG_SCENE::TAG_NONE;
 }
 
 /// <summary>
@@ -43,6 +43,6 @@ void Title::Draw()
 	// 背景描画
 	DrawGraph(mBackImagePosX, mBackImagePosY, mBackImage, true);
 	// 黒色で「左クリックでスタート」と描画
-	DrawString(mStartStringPosX, mStartStringPosY, "左クリックでSTART",GetColor(0,0,0));
+	DrawString(mStartStringPosX, mStartStringPosY, "右クリックでSTART",GetColor(0,0,0));
 
 }

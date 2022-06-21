@@ -19,7 +19,7 @@ Play::~Play()
 /// <summary>
 /// 更新
 /// </summary>
-SceneBase* Play::Update()
+TAG_SCENE Play::Update()
 {
 	/// <summary>
 	/// 更新処理.
@@ -27,9 +27,9 @@ SceneBase* Play::Update()
 	map->Update();                           // 背景の更新.
 
 	// 右ボタンが押されたらクリア画面に遷移
-	if ((GetMouseInput() & MOUSE_INPUT_RIGHT) != 0)
+	if (/*Key[MOUSE_INPUT_RIGHT] == 1*/(GetMouseInput() & MOUSE_INPUT_RIGHT) != 0)
 	{
-		return new Clear();
+		return TAG_SCENE::TAG_CLEAR;
 	}
 	// 右ボタンが押されたらゲームオーバー画面に遷移
 	if ((GetMouseInput() & MOUSE_INPUT_LEFT) != 0)
@@ -38,7 +38,7 @@ SceneBase* Play::Update()
 	}
 
 	// それ以外の場合はこのシーンを返す
-	return this;
+	return TAG_SCENE::TAG_NONE;
 }
 
 /// <summary>

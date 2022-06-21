@@ -157,6 +157,7 @@
   <ItemGroup>
     <ClCompile Include="Background.cpp" />
     <ClCompile Include="Clear.cpp" />
+    <ClCompile Include="Input.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Map.cpp" />
     <ClCompile Include="Over.cpp" />
@@ -174,6 +175,7 @@
   <ItemGroup>
     <ClInclude Include="Background.h" />
     <ClInclude Include="Clear.h" />
+    <ClInclude Include="Input.h" />
     <ClInclude Include="Map.h" />
     <ClInclude Include="Over.h" />
     <ClInclude Include="pch.h" />

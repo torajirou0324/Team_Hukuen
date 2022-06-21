@@ -23,31 +23,31 @@ Over::~Over()
 /// <summary>
 /// 更新
 /// </summary>
-SceneBase* Over::Update()
+TAG_SCENE Over::Update()
 {
 	// マウスの位置を取得
 	GetMousePoint(&mMousePosX, &mMousePosY);
 
 	// もし右ボタンが押されたら
-	if ((GetMouseInput() & MOUSE_INPUT_RIGHT) != 0)
+	if (/*Key[MOUSE_INPUT_RIGHT] == 1*/(GetMouseInput() & MOUSE_INPUT_RIGHT) != 0)
 	{
 		// はいボタンが押されたら
 		if (mYesButtonImagePosX <= mMousePosX && mYesButtonImagePosX + mButtonImageW >= mMousePosX &&
 			mButtonImagePosY <= mMousePosY && mMousePosY + mButtonImageH >= mMousePosY)
 		{
 			// ゲームシーンへ遷移
-			return new Play();
+			return TAG_SCENE::TAG_PLAY;
 		}
 		// いいえボタンが押されたら
 		if (mNoButtonImagePosX <= mMousePosX && mNoButtonImagePosX + mButtonImageW >= mMousePosX &&
 			mButtonImagePosY <= mMousePosY && mButtonImagePosY + mButtonImageH >= mMousePosY)
 		{
 			// タイトルシーンへ遷移
-			return new Title();
+			return TAG_SCENE::TAG_TITLE;
 		}
 	}
 	// それ以外の場合はこのシーンを返す
-	return this;
+	return TAG_SCENE::TAG_NONE;
 }
 
 /// <summary>

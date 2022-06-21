@@ -25,24 +25,25 @@ SelectStage::~SelectStage()
 /// 更新
 /// </summary>
 /// <returns></returns>
-SceneBase* SelectStage::Update()
+TAG_SCENE SelectStage::Update()
 {
 	// マウスの位置を取得
 	GetMousePoint(&mMousePosX, &mMousePosY);
 
-	// もし左ボタンが押されたら
-	if ((GetMouseInput() & MOUSE_INPUT_LEFT) != 0)
+	// もし右ボタンが押されたら
+	if (/*Key[MOUSE_INPUT_RIGHT] == 1*/(GetMouseInput() & MOUSE_INPUT_LEFT) != 0)
 	{
-		// はいボタンが押されたら
+		// ステージ画像が押されたら
 		if (mStage1ImagePosX <= mMousePosX && mStage1ImagePosX + mStageImageW >= mMousePosX &&
 			mStageImagePosY <= mMousePosY && mStageImagePosY + mStageImageH >= mMousePosY)
 		{
 			// ゲームシーンへ遷移
-			return new Play();
+			return TAG_SCENE::TAG_PLAY;
 		}
 	}
+
 	// それ以外はこのシーンを返す
-	return this;
+	return TAG_SCENE::TAG_NONE;
 }
 
 
@@ -55,5 +56,6 @@ void SelectStage::Draw()
 	DrawGraph(mBackImagePosX, mBackImagePosY, mBackImage, true);
 	// ステージ１描画
 	DrawGraph(mStage1ImagePosX, mStageImagePosY, mStage1Image, true);
+	DrawString(0, 0, "ここだけ左クリック", true);
 	
 }

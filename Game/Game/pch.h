@@ -47,3 +47,4 @@ const int mFontSize = 40;
 #include "Clear.h"
 #include "Over.h"
 #include "SceneManager.h"
+#include "Input.h"

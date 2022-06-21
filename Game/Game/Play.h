@@ -10,7 +10,7 @@ public:
 	// •`‰æ
 	void Draw();
 	// XV
-	SceneBase* Update()override;
+	TAG_SCENE Update()override;
 
 	/// <summary>
 	/// •Ï”‚Ì‰Šú‰».
