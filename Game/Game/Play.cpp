@@ -13,7 +13,8 @@ Play::Play()
 /// </summary>
 Play::~Play()
 {
-	delete map;                                  // 背景の削除.
+	// 背景の削除.
+	delete map;
 }
 
 /// <summary>
@@ -26,15 +27,10 @@ TAG_SCENE Play::Update()
 	/// </summary>
 	map->Update();                           // 背景の更新.
 
-	// 右ボタンが押されたらクリア画面に遷移
-	if (/*Key[MOUSE_INPUT_RIGHT] == 1*/(GetMouseInput() & MOUSE_INPUT_RIGHT) != 0)
+	// 右ボタンが押されたらリザルト画面に遷移
+	if (InputFrame[MOUSE_INPUT_RIGHT] == 1)
 	{
-		return TAG_SCENE::TAG_CLEAR;
-	}
-	// 右ボタンが押されたらゲームオーバー画面に遷移
-	if ((GetMouseInput() & MOUSE_INPUT_LEFT) != 0)
-	{
-		// return new Over();
+		return TAG_SCENE::TAG_RESULT;
 	}
 
 	// それ以外の場合はこのシーンを返す
@@ -48,5 +44,6 @@ void Play::Draw()
 {
 	// 背景描画
 	DrawGraph(mBackImagePosX, mBackImagePosY, mBackImage, true);
-	map->Draw();                             // 背景の描画.
+	// 背景の描画.
+	map->Draw();
 }

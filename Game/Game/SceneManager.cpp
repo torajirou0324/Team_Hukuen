@@ -4,7 +4,6 @@
 /// コンストラクタ
 /// </summary>
 SceneManager::SceneManager()
-	: mMouseInputFlag(false)
 {
 	// シーンを生成
 	CreateScene(TAG_SCENE::TAG_TITLE);
@@ -36,19 +35,25 @@ void SceneManager::GameRoop()
 		/// 描画処理.
 		/// </summary>
 		ClearDrawScreen();
-		// 
+		// キー入力を計算
+		UpdateKey();
+		// 現在のシーンを更新
 		TAG_SCENE tag = mNowScene->Update();
+		// 現在のシーンを描画
 		mNowScene->Draw();
-		//UpdateKey();
+
 		// 裏画面の内容を表画面に反映
 		ScreenFlip();
 
+		// タグがNONEであれば、現在のシーンを返す
 		if (tag == TAG_SCENE::TAG_NONE)
 		{
 			continue;
 		}
 		
+		// シーンを削除
 		ClearScene();
+		// シーンを生成
 		CreateScene(tag);
 	}
 }
@@ -74,12 +79,9 @@ void SceneManager::CreateScene(TAG_SCENE _tag)
 	case TAG_SCENE::TAG_PLAY:
 		mNowScene = new Play;
 		break;
-		// クリア
-	case TAG_SCENE::TAG_CLEAR:
-		mNowScene = new Clear;
-		break;
-	case TAG_SCENE::TAG_OVER:
-		mNowScene = new Over;
+		// リザルト
+	case TAG_SCENE::TAG_RESULT:
+		mNowScene = new Result;
 		break;
 	}
 }

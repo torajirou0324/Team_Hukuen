@@ -31,7 +31,7 @@ TAG_SCENE SelectStage::Update()
 	GetMousePoint(&mMousePosX, &mMousePosY);
 
 	// もし右ボタンが押されたら
-	if (/*Key[MOUSE_INPUT_RIGHT] == 1*/(GetMouseInput() & MOUSE_INPUT_LEFT) != 0)
+	if (InputFrame[MOUSE_INPUT_RIGHT] == 1)
 	{
 		// ステージ画像が押されたら
 		if (mStage1ImagePosX <= mMousePosX && mStage1ImagePosX + mStageImageW >= mMousePosX &&
@@ -56,6 +56,5 @@ void SelectStage::Draw()
 	DrawGraph(mBackImagePosX, mBackImagePosY, mBackImage, true);
 	// ステージ１描画
 	DrawGraph(mStage1ImagePosX, mStageImagePosY, mStage1Image, true);
-	DrawString(0, 0, "ここだけ左クリック", true);
 	
 }

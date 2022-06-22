@@ -19,5 +19,6 @@ private:
 	// スタート文字座標Y
 	int mStartStringPosY;
 
+
 };
 

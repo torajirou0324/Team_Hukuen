@@ -1,24 +1,32 @@
 #include "pch.h"
-int Key[256];
 
+#define KEYNUM 256
+
+int InputFrame[KEYNUM];
+
+/// <summary>
+/// 「何フレーム押されているか」を計算する
+/// </summary>
+/// <returns></returns>
 int UpdateKey()
 {
-    char tmpKey[256];          // 現在のキーの入力状態を格納する
-    
-    if (GetMouseInput())
+    // マウス入力状態を得る
+    int mMouseInput = GetMouseInput() & MOUSE_INPUT_RIGHT;
+
+    for (int i = 0; i < 256; i++)
     {
-        for (int i = 0; i < 256; i++)
+        // i番のキーコードに対応するキーが押されていたら
+        if (mMouseInput != 0)
         {
-            if (tmpKey[i] != 0) // i番のキーコードに対応するキーが押されていたら
-            {
-                Key[i]++;       // 加算
-            }
-            else                // 押されていなければ
-            {
-                Key[i] = 0;     // 0にする
-            }
+            // 加算
+            InputFrame[i]++;
+        }
+        // 押されていなければ
+        else
+        {
+            // 0にする
+            InputFrame[i] = 0;
         }
     }
-    
     return 0;
 }

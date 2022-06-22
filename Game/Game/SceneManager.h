@@ -16,13 +16,14 @@ public:
 	// シーンを削除
 	void ClearScene();
 
+	// マウス入力
+	void MouseInput();
 
 private:
-	// マウス入力管理フラグ
-	bool mMouseInputFlag;
 
 	// 現在のシーン
 	SceneBase* mNowScene;
-
 };
 
+// 押されてないか確認するフラグ
+// 時間計測なんでもできる

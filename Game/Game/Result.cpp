@@ -3,19 +3,18 @@
 /// <summary>
 /// コンストラクタ
 /// </summary>
-Over::Over()
-	: SceneBase()
-	, mRetryStringPosX(160)
-	, mRetryStringPosY(150)
+Result::Result()
+	:SceneBase()
+	, mReturnStringPosX(190)
+	, mReturnStringPosY(150)
 {
-	// 背景画像を読み込む
-	mBackImage = LoadGraph("Img/karidata/over_kari.png");
+	mBackImage = LoadGraph("Img/karidata/result_kari.png");
 }
 
 /// <summary>
 /// デストラクタ
 /// </summary>
-Over::~Over()
+Result::~Result()
 {
 
 }
@@ -23,29 +22,32 @@ Over::~Over()
 /// <summary>
 /// 更新
 /// </summary>
-TAG_SCENE Over::Update()
+/// <returns></returns>
+TAG_SCENE Result::Update()
 {
 	// マウスの位置を取得
 	GetMousePoint(&mMousePosX, &mMousePosY);
-
+	
 	// もし右ボタンが押されたら
-	if (/*Key[MOUSE_INPUT_RIGHT] == 1*/(GetMouseInput() & MOUSE_INPUT_RIGHT) != 0)
+	if (InputFrame[MOUSE_INPUT_RIGHT] == 1)
 	{
 		// はいボタンが押されたら
 		if (mYesButtonImagePosX <= mMousePosX && mYesButtonImagePosX + mButtonImageW >= mMousePosX &&
-			mButtonImagePosY <= mMousePosY && mMousePosY + mButtonImageH >= mMousePosY)
-		{
-			// ゲームシーンへ遷移
-			return TAG_SCENE::TAG_PLAY;
-		}
-		// いいえボタンが押されたら
-		if (mNoButtonImagePosX <= mMousePosX && mNoButtonImagePosX + mButtonImageW >= mMousePosX &&
 			mButtonImagePosY <= mMousePosY && mButtonImagePosY + mButtonImageH >= mMousePosY)
 		{
 			// タイトルシーンへ遷移
 			return TAG_SCENE::TAG_TITLE;
 		}
+		// いいえボタンが押されたら
+		if (mNoButtonImagePosX <= mMousePosX && mNoButtonImagePosX + mButtonImageW >= mMousePosX &&
+			mButtonImagePosY <= mMousePosY && mButtonImagePosY + mButtonImageH >= mMousePosY)
+		{
+			// DXライブラリを終了する
+			DxLib_End();
+		}
 	}
+
+	
 	// それ以外の場合はこのシーンを返す
 	return TAG_SCENE::TAG_NONE;
 }
@@ -53,14 +55,14 @@ TAG_SCENE Over::Update()
 /// <summary>
 /// 描画
 /// </summary>
-void Over::Draw()
+void Result::Draw()
 {
 	// 背景描画
 	DrawGraph(mBackImagePosX, mBackImagePosY, mBackImage, true);
-	// 白色で「リトライする？」と描画
-	DrawString(mRetryStringPosX, mRetryStringPosY, "リトライする？", GetColor(255, 255, 255));
-	// ボタン(はい)描画
+	// 「タイトルに戻る？」の描画
+	DrawString(mReturnStringPosX, mReturnStringPosY, "タイトルに戻る？", true);
+	// はいボタン描画
 	DrawGraph(mYesButtonImagePosX, mButtonImagePosY, mYesButtonImage, true);
-	// ボタン(いいえ)描画
+	// いいえボタン描画
 	DrawGraph(mNoButtonImagePosX, mButtonImagePosY, mNoButtonImage, true);
 }
