@@ -46,3 +46,7 @@ const int mFontSize = 40;
 #include "Clear.h"
 #include "Over.h"
 #include "SceneManager.h"
+
+#include "EnemyBase.h"
+#include "EnemyManager.h"
+#include "EnemyFromBack.h"
