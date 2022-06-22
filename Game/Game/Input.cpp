@@ -10,12 +10,12 @@ int InputFrame[KEYNUM];
 /// <returns></returns>
 int UpdateKey()
 {
-    // マウス入力状態を得る
+    // マウス入力状態を得るため、右クリックを代入
     int mMouseInput = GetMouseInput() & MOUSE_INPUT_RIGHT;
 
     for (int i = 0; i < 256; i++)
     {
-        // i番のキーコードに対応するキーが押されていたら
+        // 対応するキーが押されていたら
         if (mMouseInput != 0)
         {
             // 加算

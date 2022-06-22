@@ -8,6 +8,7 @@ Result::Result()
 	, mReturnStringPosX(190)
 	, mReturnStringPosY(150)
 {
+	// ”wŒi‰æ‘œ‚ğ“Ç‚İ‚Ş
 	mBackImage = LoadGraph("Img/karidata/result_kari.png");
 }
 

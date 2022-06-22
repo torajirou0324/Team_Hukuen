@@ -10,6 +10,7 @@ SelectStage::SelectStage()
 	, mStageImageW(250)
 	, mStageImageH(281)
 {
+	// ”wŒi‰æ‘œ‚ğ“Ç‚İ‚Ş
 	mBackImage = LoadGraph("Img/karidata/Select_kari.png");
 }
 
