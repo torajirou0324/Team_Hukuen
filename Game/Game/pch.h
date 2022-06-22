@@ -3,6 +3,9 @@
 // 標準ヘッダファイル
 #include <DxLib.h>
 
+// 数学ヘッダ
+#include <math.h>
+
 // マクロの定義
 // ウィンドウ
 const int WINDOW_WIDTH = 640;
@@ -48,3 +51,4 @@ const int mFontSize = 40;
 #include "SceneManager.h"
 
 #include "Input.h"
+#include "Sound.h"

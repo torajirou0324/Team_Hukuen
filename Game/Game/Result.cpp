@@ -5,11 +5,12 @@
 /// </summary>
 Result::Result()
 	:SceneBase()
-	, mReturnStringPosX(190)
+	, mReturnStringPosX(100)
 	, mReturnStringPosY(150)
 {
 	// 背景画像を読み込む
 	mBackImage = LoadGraph("Img/karidata/result_kari.png");
+	mReturnStringImage = LoadGraph("Img/karidata/moji/result.png");
 }
 
 /// <summary>
@@ -36,6 +37,8 @@ TAG_SCENE Result::Update()
 		if (mYesButtonImagePosX <= mMousePosX && mYesButtonImagePosX + mButtonImageW >= mMousePosX &&
 			mButtonImagePosY <= mMousePosY && mButtonImagePosY + mButtonImageH >= mMousePosY)
 		{
+			// クリック音再生
+			mClickSE->PlaySE();
 			// タイトルシーンへ遷移
 			return TAG_SCENE::TAG_TITLE;
 		}
@@ -43,6 +46,8 @@ TAG_SCENE Result::Update()
 		if (mNoButtonImagePosX <= mMousePosX && mNoButtonImagePosX + mButtonImageW >= mMousePosX &&
 			mButtonImagePosY <= mMousePosY && mButtonImagePosY + mButtonImageH >= mMousePosY)
 		{
+			// クリック音再生
+			mClickSE->PlaySE();
 			// DXライブラリを終了する
 			DxLib_End();
 		}
@@ -61,7 +66,7 @@ void Result::Draw()
 	// 背景描画
 	DrawGraph(mBackImagePosX, mBackImagePosY, mBackImage, true);
 	// 「タイトルに戻る？」の描画
-	DrawString(mReturnStringPosX, mReturnStringPosY, "タイトルに戻る？", true);
+	DrawGraph(mReturnStringPosX, mReturnStringPosY, mReturnStringImage, true);
 	// はいボタン描画
 	DrawGraph(mYesButtonImagePosX, mButtonImagePosY, mYesButtonImage, true);
 	// いいえボタン描画

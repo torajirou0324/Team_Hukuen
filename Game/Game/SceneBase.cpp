@@ -6,7 +6,7 @@
 SceneBase::SceneBase()
 	: mBackImage(0)
 {
-	
+	mClickSE = new Sound("Sound/crick.mp3");
 }
 
 /// <summary>

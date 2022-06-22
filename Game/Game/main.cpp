@@ -26,6 +26,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 	SetMouseDispFlag(true);
 	//// フォント変更
 	//ChangeFont("ニコモジ＋");
+	LoadFontDataFromMemToHandle("font_1_kokumr_1.00_rls.ttf", 1);
+
 	// フォントサイズ変更
 	SetFontSize(mFontSize);
 
