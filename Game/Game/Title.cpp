@@ -26,7 +26,7 @@ Title::~Title()
 TAG_SCENE Title::Update()
 {
 	// 右ボタンが押されたらプレイ画面に遷移
-	if (/*Key[MOUSE_INPUT_RIGHT] == 1*/(GetMouseInput() & MOUSE_INPUT_RIGHT) != 0)
+	if (InputFrame[MOUSE_INPUT_RIGHT] == 1)
 	{
 		return TAG_SCENE::TAG_SELECT;
 	}

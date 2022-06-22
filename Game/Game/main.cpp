@@ -29,8 +29,9 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 	// フォントサイズ変更
 	SetFontSize(mFontSize);
 
-
+	// シーンマネージャーを読み込む
 	SceneManager* mSceneMG = new SceneManager;
+	// シーンマネージャーを削除
 	delete mSceneMG;
 
 	/// <summary>

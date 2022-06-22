@@ -7,10 +7,12 @@ enum class TAG_SCENE
 	TAG_TITLE,
 	TAG_SELECT,
 	TAG_PLAY,
-	TAG_CLEAR,
-	TAG_OVER,
+	TAG_RESULT,
 	TAG_NONE
 };
+
+
+
 
 class SceneBase
 {
@@ -25,9 +27,6 @@ public:
 	// 描画（空）
 	virtual void Draw() = 0;
 
-	// 現在のシーン
-	int mIsScene;
-	
 protected:
 	// 画像
 	// 背景画像
@@ -57,6 +56,5 @@ protected:
 	int mMousePosX;
 	// マウス座標Y
 	int mMousePosY;
-
 
 };

@@ -44,7 +44,7 @@ const int mFontSize = 40;
 #include "Title.h"
 #include "SelectStage.h"
 #include "Play.h"
-#include "Clear.h"
-#include "Over.h"
+#include "Result.h"
 #include "SceneManager.h"
+
 #include "Input.h"

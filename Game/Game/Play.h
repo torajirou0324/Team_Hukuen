@@ -17,5 +17,6 @@ public:
 	/// </summary>
 	Map* map = new Map();          // ”wŒi‚Ì¶¬.
 
+
 };
 
