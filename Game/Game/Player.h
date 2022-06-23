@@ -16,7 +16,7 @@ public:
 	//プレイヤー画像読み込み
 	void Load();
 	//プレイヤー移動処理
-	void Update(float moveMapLeftSpeed);
+	void Update();
 	//プレイヤー描画
 	void Draw();
 

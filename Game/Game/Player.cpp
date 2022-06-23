@@ -29,32 +29,59 @@ void Player::Load()
 }
 
 //プレイヤー移動処理
-void Player::Update(float moveMapleftSpeed)
+void Player::Update()
 {
+	//それぞれのボタンの座標と立幅、横幅
+	int rightBottunX = 0, rightBottunY = 0, rightBottunW = 0, rightBottunH = 0;
+	int leftBottunX = 0, leftBottunY = 0, leftBottunW = 0, leftBottunH = 0;
+	int upBottunX = 0, upBottunY = 200, upBottunW = 100, upBottunH = 100;
+
+	//マウスポインタのX座標とY座標
 	int mouseX, mouseY;
+	//マウスポインタの現在位置の取得
 	GetMousePoint(&mouseX, &mouseY);
+
 	//マウス左ボタンが押されてなければ
 	if ((GetMouseInput() & MOUSE_INPUT_LEFT) == 0)
 	{
 		mPushBotton = FALSE;
 	}
 	//右移動
-	if ((GetMouseInput() & MOUSE_INPUT_LEFT) != 0 && mouseX > 500 && mPushBotton == FALSE)
+	if ((GetMouseInput() & MOUSE_INPUT_LEFT) != 0 && 
+		((mouseX < rightBottunX && mouseX > rightBottunX + rightBottunW) &&
+		(mouseY < rightBottunY && mouseY > rightBottunY + rightBottunH)) && 
+		mPushBotton == FALSE)
 	{
-		moveMapleftSpeed = GetSpeed();
 		mPushBotton = TRUE;
 	}
 	//上移動
-	if ((GetMouseInput() & MOUSE_INPUT_LEFT) != 0 && (mouseX < 500 && mouseY < 200) && mPushBotton == FALSE)
+	if ((GetMouseInput() & MOUSE_INPUT_LEFT) != 0 && 
+		((mouseX > upBottunX && mouseX < upBottunX + upBottunW) ||
+		(mouseY > upBottunY && mouseY < upBottunY + upBottunH)) &&
+		mPushBotton == FALSE)
 	{
-		
-		mPos.y -= mSpeed;
-		mPushBotton = TRUE;
+		if (mPos.y < 200)
+		{
+			mPos.y -= mSpeed;
+		}
+		else
+		{
+			mPushBotton = TRUE;
+		}
 	}//下移動
-	if ((GetMouseInput() & MOUSE_INPUT_LEFT) != 0 && (mouseX < 500 && mouseY > 200) && mPushBotton == FALSE)
+	if ((GetMouseInput() & MOUSE_INPUT_LEFT) != 0 && 
+		((mouseX < leftBottunX && mouseX > leftBottunX + leftBottunW) &&
+		(mouseY < leftBottunY && mouseY > leftBottunY + leftBottunH)) &&
+		mPushBotton == FALSE)
 	{
-		mPos.y += mSpeed;
-		mPushBotton = TRUE;
+		if (mPos.y < 150)
+		{
+			mPos.y += mSpeed;
+		}
+		else
+		{
+			mPushBotton = TRUE;
+		}
 	}
 	
 	
@@ -63,6 +90,7 @@ void Player::Update(float moveMapleftSpeed)
 //アイテム使用確認処理
 void Player::UsingItem()
 {
+
 }
 
 //プレイヤーの座標を設定する
@@ -80,7 +108,7 @@ void Player::CollisionEnemy(float enemyPosX, float enemyPosY, int enemyWide, int
 		((enemyPosY > enemyPosY && mPos.y < enemyPosY + enemyHeight) ||
 			(enemyPosY > mPos.y && enemyPosY < mPos.y + mHeight)))
 	{
-		
+		mCollisionFlag = TRUE;
 	}
 }
 

@@ -28,6 +28,10 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 	// フォントサイズ変更
 	SetFontSize(mFontSize);
 
+	Player* player = new Player();
+	player->Load();
+	player->SetPosition(100, 100);
+
 	
 	// 現在のシーンを格納する変数　にタイトルシーンを代入
 	SceneBase* nowScene = new Title();
@@ -52,6 +56,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 			nowScene = tmpScene;
 		}
 
+		player->Update();
+
 		/// <summary>
 		/// 描画処理.
 		/// </summary>
@@ -61,6 +67,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 
 		// 現在のシーンを描画
 		nowScene->Draw();
+
+		player->Draw();
 		// 裏画面の内容を表画面に反映
 		ScreenFlip();
 	}
