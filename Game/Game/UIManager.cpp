@@ -1,13 +1,15 @@
 #include "pch.h"
-UIManager* UIManager::Maneger = nullptr;
+UIManager* UIManager::uiManeger = nullptr;
 
 UIManager::UIManager()
 {
-	UIManager::UPImgPosX= UPImgPosY = 0;
-	UIManager::DownImgPosX= DownImgPosY=0;
-	UIManager::RightImgPosX= RightImgPosY=0;
-	UIManager::NowMousePosX= NowMousePosY=0;
-
+	pos p;
+	p.x = 0;
+	p.y = 0;
+	for (auto i = 0; i < TYPE::END; i++)
+	{
+		keypos.push_back(p);
+	}
 }
 
 UIManager::~UIManager()
@@ -16,17 +18,17 @@ UIManager::~UIManager()
 
 void UIManager::CreateInstance()
 {
-	if (Maneger == nullptr)
+	if (uiManeger == nullptr)
 	{
-		Maneger = new UIManager();
+		uiManeger = new UIManager();
 	}
 }
 
 void UIManager::DeleteInstance()
 {
-	if (Maneger != nullptr)
+	if (uiManeger != nullptr)
 	{
-		Maneger = new UIManager();
+		uiManeger = new UIManager();
 	}
 }
 
@@ -34,7 +36,7 @@ void UIManager::addUI(UIBase* ui)
 {
 	/*UI.pushback(ui);*/
 
-	Maneger->UI.push_back(ui);
+	uiManeger->UI.push_back(ui);
 }
 
 void UIManager::DeleteUI()
@@ -43,10 +45,10 @@ void UIManager::DeleteUI()
 
 bool UIManager::InputFalgUP()
 {
-	if (((NowMousePosX > UPImgPosX && NowMousePosX < UPImgPosX + IMG_WIDTH) ||
-		(UPImgPosX > NowMousePosX && UPImgPosX < NowMousePosX )) &&
-		((NowMousePosY > UPImgPosY && NowMousePosY < UPImgPosY + IMG_HEIGHT) ||
-			(UPImgPosY > NowMousePosY && UPImgPosY < NowMousePosY )))
+	if (((uiManeger->keypos[MOUSE].x > uiManeger->keypos[UP].x && uiManeger->keypos[MOUSE].x < uiManeger->keypos[UP].x + IMG_WIDTH) ||
+		(uiManeger->keypos[UP].x > uiManeger->keypos[MOUSE].x && uiManeger->keypos[UP].x < uiManeger->keypos[MOUSE].x )) &&
+		((uiManeger->keypos[MOUSE].y > uiManeger->keypos[UP].y && uiManeger->keypos[MOUSE].y < uiManeger->keypos[UP].y + IMG_HEIGHT) ||
+			(uiManeger->keypos[UP].y > uiManeger->keypos[MOUSE].y && uiManeger->keypos[UP].y < uiManeger->keypos[MOUSE].y )))
 	{
 		// ÚG‚µ‚Ä‚¢‚é
 		return true;
@@ -61,10 +63,10 @@ bool UIManager::InputFalgUP()
 
 bool UIManager::InputFalgDown()
 {
-	if (((NowMousePosX > DownImgPosX && NowMousePosX < DownImgPosX + IMG_WIDTH) ||
-		(DownImgPosX > NowMousePosX && DownImgPosX < NowMousePosX)) &&
-		((NowMousePosY > DownImgPosY && NowMousePosY < DownImgPosY + IMG_HEIGHT) ||
-			(DownImgPosY > NowMousePosY && DownImgPosY < NowMousePosY )))
+	if (((uiManeger->keypos[MOUSE].x > uiManeger->keypos[DOWN].x && uiManeger->keypos[MOUSE].x < uiManeger->keypos[DOWN].x + IMG_WIDTH) ||
+		(uiManeger->keypos[DOWN].x > uiManeger->keypos[MOUSE].x && uiManeger->keypos[DOWN].x < uiManeger->keypos[MOUSE].x)) &&
+		((uiManeger->keypos[MOUSE].y > uiManeger->keypos[DOWN].y && uiManeger->keypos[MOUSE].y < uiManeger->keypos[DOWN].y + IMG_HEIGHT) ||
+			(uiManeger->keypos[DOWN].y > uiManeger->keypos[MOUSE].y && uiManeger->keypos[DOWN].y < uiManeger->keypos[MOUSE].y)))
 	{
 		// ÚG‚µ‚Ä‚¢‚é
 		return true;
@@ -79,10 +81,10 @@ bool UIManager::InputFalgDown()
 
 bool UIManager::InputFalgRight()
 {
-	if (((NowMousePosX > RightImgPosX && NowMousePosX < RightImgPosX + IMG_WIDTH) ||
-		(RightImgPosX > NowMousePosX && RightImgPosX < NowMousePosX )) &&
-		((NowMousePosY > RightImgPosY && NowMousePosY < RightImgPosY + IMG_HEIGHT) ||
-			(RightImgPosY > NowMousePosY && RightImgPosY < NowMousePosY)))
+	if (((uiManeger->keypos[MOUSE].x > uiManeger->keypos[RIGHT].x && uiManeger->keypos[MOUSE].x < uiManeger->keypos[RIGHT].x + IMG_WIDTH) ||
+		(uiManeger->keypos[RIGHT].x > uiManeger->keypos[MOUSE].x && uiManeger->keypos[RIGHT].x < uiManeger->keypos[MOUSE].x )) &&
+		((uiManeger->keypos[MOUSE].y > uiManeger->keypos[RIGHT].y && uiManeger->keypos[MOUSE].y < uiManeger->keypos[RIGHT].y + IMG_HEIGHT) ||
+			(uiManeger->keypos[RIGHT].y > uiManeger->keypos[MOUSE].y && uiManeger->keypos[RIGHT].y < uiManeger->keypos[MOUSE].y )))
 	{
 		// ÚG‚µ‚Ä‚¢‚é
 		return true;
@@ -100,11 +102,11 @@ void UIManager::Update()
 {
 	if (InputFrame[MOUSE_INPUT_RIGHT] == 1)
 	{
-		GetMousePoint(&NowMousePosX, &NowMousePosY);
+		GetMousePoint(&uiManeger->keypos[MOUSE].x, &uiManeger->keypos[MOUSE].y);
 	}
 
 
-	for (auto A : Maneger->UI)
+	for (auto A : uiManeger->UI)
 	{
 		A->Update();
 	}
@@ -112,7 +114,7 @@ void UIManager::Update()
 
 void UIManager::Draw()
 {
-	for (auto A : Maneger->UI)
+	for (auto A : uiManeger->UI)
 	{
 		A->Draw();
 	}

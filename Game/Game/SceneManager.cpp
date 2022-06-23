@@ -58,7 +58,6 @@ void SceneManager::GameRoop()
 		CreateScene(tag);
 	}
 	UIManager::DeleteInstance();
-
 }
 
 /// <summary>
