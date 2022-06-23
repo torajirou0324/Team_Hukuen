@@ -2,6 +2,7 @@
 
 // 標準ヘッダファイル
 #include <DxLib.h>
+#include <vector>
 
 // マクロの定義
 // ウィンドウ
@@ -46,5 +47,10 @@ const int mFontSize = 40;
 #include "Play.h"
 #include "Result.h"
 #include "SceneManager.h"
+/* UI */
+#include "UIBase.h"
+#include "Button.h"
+#include "UIManager.h"
+
 
 #include "Input.h"

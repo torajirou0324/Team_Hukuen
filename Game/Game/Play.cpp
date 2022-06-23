@@ -28,7 +28,7 @@ TAG_SCENE Play::Update()
 	{
 		return TAG_SCENE::TAG_RESULT;
 	}
-
+	UIManager::Update();
 	// ‚»‚êˆÈŠO‚Ìê‡‚Í‚±‚ÌƒV[ƒ“‚ð•Ô‚·
 	return TAG_SCENE::TAG_NONE;
 }
@@ -42,4 +42,5 @@ void Play::Draw()
 	DrawGraph(mBackImagePosX, mBackImagePosY, mBackImage, true);
 	// ”wŒi‚Ì•`‰æ.
 	map->Draw();
+	UIManager::Draw();
 }

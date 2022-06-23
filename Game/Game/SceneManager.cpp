@@ -29,6 +29,7 @@ SceneManager::~SceneManager()
 /// </summary>
 void SceneManager::GameRoop()
 {
+	UIManager::CreateInstance();
 	while (ProcessMessage() == 0 && CheckHitKey(KEY_INPUT_ESCAPE) == 0)
 	{
 		/// <summary>
@@ -56,6 +57,8 @@ void SceneManager::GameRoop()
 		// ƒV[ƒ“‚ğ¶¬
 		CreateScene(tag);
 	}
+	UIManager::DeleteInstance();
+
 }
 
 /// <summary>
