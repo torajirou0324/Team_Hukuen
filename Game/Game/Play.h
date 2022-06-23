@@ -10,13 +10,11 @@ public:
 	// •`‰æ
 	void Draw();
 	// XV
-	TAG_SCENE Update()override;
+	SceneBase* Update()override;
 
 	/// <summary>
 	/// •Ï”‚Ì‰Šú‰».
 	/// </summary>
 	Map* map = new Map();          // ”wŒi‚Ì¶¬.
-
-
 };
 
