@@ -1,57 +1,92 @@
 #include "pch.h"
+//コンストラクタ
 Player::Player()
 {
-	Pos.x = 0.0f;
-	Pos.y = 0.0f;
-	Pos.z = 0.0f;
+	mPos.x = 0.0f;
+	mPos.y = 0.0f;
+	mPos.z = 0.0f;
 
-	imgHandle = -1;
+	mImgHandle = -1;
 
-	height = 0;
-	width = 0;
+	mSpeed = 5.0f;
+	mHeight = 0;
+	mWidth = 0;
+	mPushBotton = FALSE;
+	mCollisionFlag = FALSE;
 }
 
+//デストラクタ
 Player::~Player()
 {
-	DeleteGraph(imgHandle);
+
 }
 
-void Player::Load(const char* imgName)
+//プレイヤー画像プリロード
+void Player::Load()
 {
-	imgHandle = LoadGraph("img/player.png");
+	mImgHandle = LoadGraph("img/player.png");
+	GetGraphSize(mImgHandle, &mWidth, &mHeight);
 }
 
-void Player::Update(int speed)
+//プレイヤー移動処理
+void Player::Update(float moveMapleftSpeed)
 {
 	int mouseX, mouseY;
 	GetMousePoint(&mouseX, &mouseY);
-	if ((GetMouseInput() & MOUSE_INPUT_LEFT) != 0 && mouseX > 500)
+	//マウス左ボタンが押されてなければ
+	if ((GetMouseInput() & MOUSE_INPUT_LEFT) == 0)
 	{
-		Pos.x += speed;
+		mPushBotton = FALSE;
 	}
-	if ((GetMouseInput() & MOUSE_INPUT_LEFT) != 0 && mouseX < 500)
+	//右移動
+	if ((GetMouseInput() & MOUSE_INPUT_LEFT) != 0 && mouseX > 500 && mPushBotton == FALSE)
 	{
-		Pos.x -= speed;
+		moveMapleftSpeed = GetSpeed();
+		mPushBotton = TRUE;
+	}
+	//上移動
+	if ((GetMouseInput() & MOUSE_INPUT_LEFT) != 0 && (mouseX < 500 && mouseY < 200) && mPushBotton == FALSE)
+	{
+		
+		mPos.y -= mSpeed;
+		mPushBotton = TRUE;
+	}//下移動
+	if ((GetMouseInput() & MOUSE_INPUT_LEFT) != 0 && (mouseX < 500 && mouseY > 200) && mPushBotton == FALSE)
+	{
+		mPos.y += mSpeed;
+		mPushBotton = TRUE;
+	}
+	
+	
+}
+
+//アイテム使用確認処理
+void Player::UsingItem()
+{
+}
+
+//プレイヤーの座標を設定する
+void Player::SetPosition(float posx, float posy)
+{
+	mPos.x = posx;
+	mPos.y = posy;
+}
+
+//エネミーとの当たり判定
+void Player::CollisionEnemy(float enemyPosX, float enemyPosY, int enemyWide, int enemyHeight)
+{
+	if (((mPos.x > enemyPosX && mPos.x < enemyPosX + enemyWide) ||
+		(enemyPosX > mPos.x && enemyPosX < mPos.x + mWidth)) &&
+		((enemyPosY > enemyPosY && mPos.y < enemyPosY + enemyHeight) ||
+			(enemyPosY > mPos.y && enemyPosY < mPos.y + mHeight)))
+	{
+		
 	}
 }
 
-void Player::SetPosition(float x, float y)
-{
-	Pos.x = x;
-	Pos.y = y;
-}
-
-int Player::GetImgHeight()
-{
-	return height;
-}
-
-int Player::GetImgWidth()
-{
-	return width;
-}
-
+//プレイヤーを描画する
 void Player::Draw()
 {
-	DrawGraph(Pos.x, Pos.y, imgHandle, TRUE);
+	DrawGraph(mPos.x, mPos.y, mImgHandle, TRUE);
 }
+

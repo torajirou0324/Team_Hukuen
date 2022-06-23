@@ -22,6 +22,10 @@ Background::Background()
 /// </summary>
 Background::~Background()
 {
+	if (mImgHandle == -1)
+	{
+		return;
+	}
 	DeleteGraph(mImgHandle);
 }
 

@@ -6,6 +6,7 @@
 Play::Play()
 	: SceneBase()
 {
+
 }
 
 /// <summary>

@@ -16,6 +16,5 @@ public:
 	/// •Ï”‚Ì‰Šú‰».
 	/// </summary>
 	Map* map = new Map();          // ”wŒi‚Ì¶¬.
-
 };
 
