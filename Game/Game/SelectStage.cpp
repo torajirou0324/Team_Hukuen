@@ -38,6 +38,8 @@ TAG_SCENE SelectStage::Update()
 		if (mStage1ImagePosX <= mMousePosX && mStage1ImagePosX + mStageImageW >= mMousePosX &&
 			mStageImagePosY <= mMousePosY && mStageImagePosY + mStageImageH >= mMousePosY)
 		{
+			// クリック音再生
+			mClickSE->PlaySE();
 			// ゲームシーンへ遷移
 			return TAG_SCENE::TAG_PLAY;
 		}

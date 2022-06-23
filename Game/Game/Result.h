@@ -1,5 +1,6 @@
 #pragma once
 #include "SceneBase.h"
+
 class Result : public SceneBase
 {
 public:
@@ -12,7 +13,8 @@ public:
 	void Draw();
 
 private:
-
+	// タイトルへ戻る文字画像
+	int mReturnStringImage;
 	// タイトルへ戻る文字座標X
 	int mReturnStringPosX;
 	// タイトルへ戻る文字座標Y
