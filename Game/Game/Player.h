@@ -1,5 +1,11 @@
 #pragma once
+
+#define PLAYER_WIDTH 64
+#define PLAYER_HEIGHT 64
+
 #include"pch.h"
+
+
 
 class SceneManager;
 
@@ -28,26 +34,33 @@ public:
 
 	
 	//セッター
-	void SetPosX(const int& _posX) { mWidth = _posX; }
+	void SetPosX(const int& _posX) { mPlayerX = _posX; }
 	void SetCollisionFlag(const bool& _Flag) { mCollisionFlag = _Flag; }
 	void SetSpeed(const float& _speed) { mSpeed = _speed; }
+	void SetMoveUpFlag(const bool& _UpFlag) { mPlayerMoveUpFlag = _UpFlag; }
+	void SetMoveDownFlag(const bool& _DownFlag) { mPlayerMoveDownFlag = _DownFlag; }
+	void SetMoveRightFlag(const bool& _RightFlag) { mPlayerMoveRightFlag = _RightFlag; }
 	//ゲッター
-	const int& GetPosX() const { return mWidth; }
-	const int& GetPosY() const { return mHeight; }
+	const int& GetPosX() const { return mPlayerX; }
+	const int& GetPosY() const { return mPlayerY; }
 	const float& GetSpeed() const { return mSpeed; }
 
 private:
-	//プレイヤー位置
-	VECTOR mPos;
+	
 	//プレイヤー画像
 	int mImgHandle;
-	//プレイヤー画像の立幅、横幅（ピクセル単位）
-	int mHeight, mWidth;
+	//プレイヤー画像の縦幅、横幅（ピクセル単位）
+	int mPlayerX, mPlayerY;
 	//プレイヤー移動速度
 	float mSpeed;
 
 	//ボタン押しているかのフラグ
 	bool mPushBotton;
+
+	//それぞれのボタンのフラグ
+	bool mPlayerMoveUpFlag;
+	bool mPlayerMoveDownFlag;
+	bool mPlayerMoveRightFlag;
 
 	//敵と接触しているかのフラグ
 	bool mCollisionFlag;
