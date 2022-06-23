@@ -4,6 +4,9 @@
 #include <DxLib.h>
 #include <vector>
 
+// 数学ヘッダ
+#include <math.h>
+
 // マクロの定義
 // ウィンドウ
 const int WINDOW_WIDTH = 640;
@@ -54,3 +57,4 @@ const int mFontSize = 40;
 
 
 #include "Input.h"
+#include "Sound.h"

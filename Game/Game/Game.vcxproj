@@ -170,6 +170,7 @@
     <ClCompile Include="SceneBase.cpp" />
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="SelectStage.cpp" />
+    <ClCompile Include="Sound.cpp" />
     <ClCompile Include="Title.cpp" />
     <ClCompile Include="UIBase.cpp" />
     <ClCompile Include="UIManager.cpp" />
@@ -186,6 +187,7 @@
     <ClInclude Include="SceneBase.h" />
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="SelectStage.h" />
+    <ClInclude Include="Sound.h" />
     <ClInclude Include="Title.h" />
     <ClInclude Include="UIBase.h" />
     <ClInclude Include="UIManager.h" />

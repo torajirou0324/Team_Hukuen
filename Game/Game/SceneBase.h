@@ -1,5 +1,5 @@
 #pragma once
-#include "DxLib.h"
+#include "Sound.h"
 
 // シーンのタグ
 enum class TAG_SCENE
@@ -10,9 +10,6 @@ enum class TAG_SCENE
 	TAG_RESULT,
 	TAG_NONE
 };
-
-
-
 
 class SceneBase
 {
@@ -57,4 +54,6 @@ protected:
 	// マウス座標Y
 	int mMousePosY;
 
+	// クリック音
+	Sound* mClickSE;
 };

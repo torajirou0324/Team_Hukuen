@@ -16,9 +16,6 @@
     <Filter Include="ソース ファイル\Scene">
       <UniqueIdentifier>{fd125a40-1909-47e4-9a9c-49ae3808eb11}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ソース ファイル\UI">
-      <UniqueIdentifier>{b0389367-ea30-4de3-bdd5-5b6d00b28dc4}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -57,14 +54,8 @@
     <ClCompile Include="Input.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="UIBase.cpp">
-      <Filter>ソース ファイル\UI</Filter>
-    </ClCompile>
-    <ClCompile Include="Button.cpp">
-      <Filter>ソース ファイル\UI</Filter>
-    </ClCompile>
-    <ClCompile Include="UIManager.cpp">
-      <Filter>ソース ファイル\UI</Filter>
+    <ClCompile Include="Sound.cpp">
+      <Filter>ソース ファイル</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -101,14 +92,8 @@
     <ClInclude Include="Input.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="UIBase.h">
-      <Filter>ソース ファイル\UI</Filter>
-    </ClInclude>
-    <ClInclude Include="Button.h">
-      <Filter>ソース ファイル\UI</Filter>
-    </ClInclude>
-    <ClInclude Include="UIManager.h">
-      <Filter>ソース ファイル\UI</Filter>
+    <ClInclude Include="Sound.h">
+      <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
