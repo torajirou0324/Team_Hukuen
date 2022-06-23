@@ -1,5 +1,8 @@
 #pragma once
 #include "pch.h"
+#define IMG_WIDTH 64
+#define IMG_HEIGHT 64
+
 class UIManager
 {
 public:
@@ -18,4 +21,9 @@ public:
 private:
 	static UIManager* Maneger;
 	std::vector<UIBase*> UI;
+	static int UPImgPosX, UPImgPosY;
+	static int DownImgPosX, DownImgPosY;
+	static int RightImgPosX, RightImgPosY;
+
+	static int NowMousePosX, NowMousePosY;
 };

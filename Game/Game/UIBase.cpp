@@ -5,7 +5,8 @@ UIBase::UIBase()
 	,ButtonPushHandle(-1)
 	,ButtonFlag(false)
 
-{	 
+{
+
 }	 
 
 UIBase::~UIBase()
