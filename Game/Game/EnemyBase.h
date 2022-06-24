@@ -17,7 +17,7 @@ public:
 
 protected:
 	int mImageHandle;	//イメージハンドル
-	VECTOR mPos;//座標
+	VECTOR mPos ;//座標
 	int mW;//画像サイズX
 	int mH;//画像サイズY
 	float mSpeed;

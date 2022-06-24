@@ -3,10 +3,14 @@
 
 
 EnemyBase::EnemyBase()
-	: mImageHandle(-1)
+	 
 {
-	
-	mPos = { 0, 0, 0 };
+	mImageHandle = -1;				// 画像ハンドルの初期化.
+	mPos = VGet(0.0f, 0.0f, 0.0f);		//ポジションの初期化
+	mW = 0;							// 画像の縦幅の初期化.
+	mH = 0;							// 画像の横幅の初期化.
+	mSpeed = 0;						//スピードの初期化
+	mAliveFlag = false;				//AliveFlagの初期化
 }
 
 EnemyBase::~EnemyBase()
