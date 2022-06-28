@@ -1,22 +1,25 @@
 #pragma once
-#include "DxLib.h"
+#include "pch.h"
 
 class EnemyBase
 {
 public:
-	EnemyBase(const char* sourceImageHandle);	//コンスタトラクタ
+	EnemyBase();	//コンスタトラクタ
 	virtual ~EnemyBase();			//デストラクタ
 
+	virtual void Load(const char* sourceImageHandle);
 	virtual void Update() = 0;		//更新
 	virtual void Draw();			//描画
 
 	//イメージハンドルの取得
-	int GetImageHandle() { return imageHandle; }
+	int GetImageHandle() { return mImageHandle; }
 
-	VECTOR inputVec;
 
 protected:
-	int imageHandle;	//イメージハンドル
-	VECTOR mPos;
-	
+	int mImageHandle;	//イメージハンドル
+	VECTOR mPos ;//座標
+	int mW;//画像サイズX
+	int mH;//画像サイズY
+	float mSpeed;
+	bool mAliveFlag;
 };

@@ -1,14 +1,14 @@
 #pragma once
+#include "pch.h"
+//class EnemyBase;
 
-class EnemyBase;
-
-class EnemyManager final
+class EnemyManager
 {
 public:
 	EnemyManager();
 	~EnemyManager();
 
-	void Update();
-	void Draw();
+	static void Update();
+	static void Draw();
 
 };
